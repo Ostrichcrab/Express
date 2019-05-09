@@ -349,10 +349,7 @@ public class DomainService implements IDomainService {
 	@Override
 	public List<Posion> getPosition(String expressId)  {
 		// TODO Auto-generated method stub
-		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaa");
-		//List<Posion> ans = posionDao.findBy("packageId",expressId, "PosCode", true);
-		List<Posion> ans = posionDao.getAll();
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		List<Posion> ans = posionDao.findBy("packageId",expressId, "posCode", true);
 		return ans;
 	}
 }
