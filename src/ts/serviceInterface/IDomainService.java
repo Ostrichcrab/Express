@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 
 import ts.model.ExpressSheet;
 import ts.model.Posion;
-
+import ts.model.TransHistory;
 import ts.model.TransPackage;
 
 @Path("/Domain")	//ÒµÎñ²Ù×÷
@@ -101,5 +101,9 @@ public interface IDomainService {
     @Path("/getPosition/{expressId}")
     public List<Posion> getPosition(@PathParam("expressId") String expressId);
 	
-    
+	@GET
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/getTransHistory/{expressId}")
+    List<TransHistory> getTransHistory(@PathParam("expressId") String expressId) throws Exception;
+
 }

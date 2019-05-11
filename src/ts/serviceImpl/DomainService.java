@@ -339,7 +339,7 @@ public class DomainService implements IDomainService {
 	public Response savePosion(Posion obj) {
 		try {
 			posionDao.save(obj);
-			return Response.ok(obj).header("EntityClass", "R_Posion").build();
+			return Response.ok(obj).header("EntityClass", "Posion").build();
 		}catch(Exception e)
 		{
 			return Response.serverError().entity(e.getMessage()).build(); 
@@ -351,5 +351,11 @@ public class DomainService implements IDomainService {
 		// TODO Auto-generated method stub
 		List<Posion> ans = posionDao.findBy("packageId",expressId, "posCode", true);
 		return ans;
+	}
+
+	@Override
+	public List<TransHistory> getTransHistory(String expressId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
