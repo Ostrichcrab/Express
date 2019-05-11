@@ -222,7 +222,9 @@ public class DomainService implements IDomainService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
+// 将快件放到包裹中去
 	public boolean MoveExpressIntoPackage(String id, String targetPkgId) {
 		TransPackage targetPkg = transPackageDao.get(targetPkgId);
 		if((targetPkg.getStatus() > 0) && (targetPkg.getStatus() < 3)){	//包裹的状态快点定义,打开的包裹或者货篮才能操作==================================================================
@@ -358,4 +360,5 @@ public class DomainService implements IDomainService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }

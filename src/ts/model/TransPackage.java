@@ -192,4 +192,15 @@ public class TransPackage implements Serializable {
 		return _saved;
 	}
 	
+	
+	public static final class STATUS {
+		//public static final int 
+		public static final int STATUS_CREATE = 0; // 新建的
+        public static final int STATUS_RECEIVED = 1; // 揽收的
+        public static final int STATUS_TRANSPORT = 2; // 转运中的
+        public static final int STATUS_DELIVERIED = 3; // 派送的
+        public static final int STATUS_HISTORY = 4; // 已完成的
+        public static final int STATUS_PACKING = 5; //打包中的
+
+	}
 }

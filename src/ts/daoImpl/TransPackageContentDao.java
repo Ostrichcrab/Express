@@ -39,4 +39,19 @@ public class TransPackageContentDao extends BaseDao<TransPackageContent,Integer>
 			super.remove(pc);
 		return ;
 	}
+	
+	/*
+	 * 根据expressSheetID，得到其待过的TransPackage的ID
+	 * 
+	 * */
+	public List<String> getPackageID(String expressSheetID){
+		List<TransPackageContent> list= super.findBy();
+		List<String> ans = new ArrayList<>();
+		for(TransPackageContent item : list) {
+			if(item.getExpress().getID()==expressSheetID) {
+				ans.add(item.getPkg().getID());
+			}
+		}
+		return ans;
+	}
 }
