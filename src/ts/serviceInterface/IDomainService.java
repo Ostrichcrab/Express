@@ -97,6 +97,12 @@ public interface IDomainService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/newTransPackage") 
     public Response newTransPackage(String id, int uid);
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/newUser") 
+    public Response newUser(UserInfo userInfo);
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

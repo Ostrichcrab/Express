@@ -375,5 +375,18 @@ public class DomainService implements IDomainService {
 		List <TransPackage> list = transPackageDao.findBy();
 		return list; 
 	}
+
+	@Override
+	public Response newUser(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		try{
+			userInfoDao.save(userInfo);
+			return Response.ok(userInfo).header("EntityClass", "UserInfo").build(); 
+		}
+		catch(Exception e)
+		{
+			return Response.serverError().entity(e.getMessage()).build(); 
+		}
+	}
 	
 }
