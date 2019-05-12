@@ -388,5 +388,21 @@ public class DomainService implements IDomainService {
 			return Response.serverError().entity(e.getMessage()).build(); 
 		}
 	}
+
+	@Override
+	public Response pack(int uid, String eid, String pid) {
+		// TODO Auto-generated method stub
+		TransPackageContent tpc = transPackageContentDao.get(eid,pid);
+		try {
+			//¸ü¸Ä×´Ì¬
+			tpc.setStatus(TransPackageContent.STATUS.STATUS_OUTOF_PACKAGE);
+			return Response.ok().header("EntityClass", "TransPackageContent").build();
+		}catch(Exception e)
+		{
+			return Response.serverError().entity(e.getMessage()).build(); 
+		}
+		
+
+	}
 	
 }
