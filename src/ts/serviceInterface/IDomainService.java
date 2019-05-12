@@ -46,6 +46,11 @@ public interface IDomainService {
    	@Path("/getUserInfo")
    	public List <UserInfo> getUserInfo();
        
+    @GET
+   	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+   	@Path("/getTransPackage")
+   	public List <TransPackage> getTransPackage();
+       
     
     @GET
     @Consumes(MediaType.APPLICATION_JSON)

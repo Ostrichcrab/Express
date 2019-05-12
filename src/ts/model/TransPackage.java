@@ -16,8 +16,20 @@ package ts.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="TransPackage")
@@ -49,7 +61,9 @@ public class TransPackage implements Serializable {
 	@Column(name="Status", nullable=true, length=4)	
 	private Integer status;
 	
+	@XmlTransient
 	@OneToMany(mappedBy="pkg", targetEntity=PackageRoute.class)	
+	@Fetch(FetchMode.SELECT)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set<PackageRoute> route = new java.util.HashSet<PackageRoute>();
@@ -58,12 +72,16 @@ public class TransPackage implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	private UsersPackage user;
 	
+	@XmlTransient
 	@OneToMany(mappedBy="pkg", targetEntity=TransPackageContent.class)	
+	@Fetch(FetchMode.SELECT)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set<TransPackageContent> content = new java.util.HashSet<TransPackageContent>();
 	
+	@XmlTransient
 	@OneToMany(mappedBy="pkg", targetEntity=TransHistory.class)	
+	@Fetch(FetchMode.SELECT)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set<TransHistory> history = new java.util.HashSet<TransHistory>();

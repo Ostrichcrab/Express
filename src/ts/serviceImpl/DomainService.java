@@ -368,5 +368,12 @@ public class DomainService implements IDomainService {
 		List <UserInfo> list = userInfoDao.findBy();
 		return list; 
 	}
+
+	@Override
+	public List<TransPackage> getTransPackage() {
+		// TODO Auto-generated method stub
+		List <TransPackage> list = transPackageDao.findBy();
+		return list; 
+	}
 	
 }
