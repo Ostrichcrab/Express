@@ -19,6 +19,7 @@ import ts.model.Posion;
 import ts.model.TransHistory;
 import ts.model.TransPackage;
 import ts.model.TransPackageContent;
+import ts.model.UserInfo;
 import ts.serviceInterface.IDomainService;
 
 public class DomainService implements IDomainService {
@@ -359,6 +360,13 @@ public class DomainService implements IDomainService {
 	public List<TransHistory> getTransHistory(String expressId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<UserInfo> getUserInfo() {
+		// TODO Auto-generated method stub
+		List <UserInfo> list = userInfoDao.findBy();
+		return list; 
 	}
 	
 }

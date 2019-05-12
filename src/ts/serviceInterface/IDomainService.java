@@ -15,6 +15,7 @@ import ts.model.ExpressSheet;
 import ts.model.Posion;
 import ts.model.TransHistory;
 import ts.model.TransPackage;
+import ts.model.UserInfo;
 
 @Path("/Domain")	//ÒµÎñ²Ù×÷
 public interface IDomainService {
@@ -39,6 +40,12 @@ public interface IDomainService {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("/getExpressSheet")
 	public List <ExpressSheet> getExpressSheet();
+    
+    @GET
+   	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+   	@Path("/getUserInfo")
+   	public List <UserInfo> getUserInfo();
+       
     
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
