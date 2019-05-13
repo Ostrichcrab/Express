@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="TransPackageContent")
 @XmlRootElement(name="TransPackageContent")
-public class TransPackageContent implements Serializable {
+public class TransPackageContent  implements Serializable  {
 	/**
 	 * 
 	 */

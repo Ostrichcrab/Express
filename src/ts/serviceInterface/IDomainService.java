@@ -127,7 +127,7 @@ public interface IDomainService {
 	@GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/pack/{uid}/{eid}/{pid}") 
-	public Response pack(@PathParam("uid")int uid, @PathParam("pid")String eid,@PathParam("tid")String pid);
+	public Response pack(@PathParam("uid")int uid, @PathParam("eid")String eid,@PathParam("pid")String pid);
     
 
 }

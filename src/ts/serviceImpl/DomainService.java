@@ -396,6 +396,7 @@ public class DomainService implements IDomainService {
 		try {
 			//¸ü¸Ä×´Ì¬
 			tpc.setStatus(TransPackageContent.STATUS.STATUS_OUTOF_PACKAGE);
+			transPackageContentDao.save(tpc);
 			return Response.ok().header("EntityClass", "TransPackageContent").build();
 		}catch(Exception e)
 		{
