@@ -46,12 +46,16 @@ public class TransPackageContentDao extends BaseDao<TransPackageContent,Integer>
 	 * */
 	public List<String> getPackageID(String expressSheetID){
 		List<TransPackageContent> list= super.findBy();
+		System.out.println("hhhhhhhhhhhistory:    "+expressSheetID);
 		List<String> ans = new ArrayList<>();
 		for(TransPackageContent item : list) {
-			if(item.getExpress().getID()==expressSheetID) {
+			System.out.println("history:    "+item.getExpress().getID());
+			if(item.getExpress().getID().equals(expressSheetID) ) {
+				System.out.println("here:  "+item.getPkg().getID());
 				ans.add(item.getPkg().getID());
 			}
 		}
+		System.out.println("historyyyyyyyyyyyyy:    "+ans);
 		return ans;
 	}
 }

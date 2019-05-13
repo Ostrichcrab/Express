@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="TransPackage")
@@ -63,6 +65,7 @@ public class TransPackage implements Serializable {
 	
 	@XmlTransient
 	@OneToMany(mappedBy="pkg", targetEntity=PackageRoute.class)	
+	@JsonIgnoreProperties(value= {"route"})
 	@Fetch(FetchMode.SELECT)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
@@ -74,6 +77,7 @@ public class TransPackage implements Serializable {
 	
 	@XmlTransient
 	@OneToMany(mappedBy="pkg", targetEntity=TransPackageContent.class)	
+	@JsonIgnoreProperties(value= {"content"})
 	@Fetch(FetchMode.SELECT)
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
@@ -82,6 +86,8 @@ public class TransPackage implements Serializable {
 	@XmlTransient
 	@OneToMany(mappedBy="pkg", targetEntity=TransHistory.class)	
 	@Fetch(FetchMode.SELECT)
+	@JsonIgnoreProperties(value= {"history"})
+
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set<TransHistory> history = new java.util.HashSet<TransHistory>();

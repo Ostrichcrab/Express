@@ -357,9 +357,22 @@ public class DomainService implements IDomainService {
 	}
 
 	@Override
-	public List<TransHistory> getTransHistory(String expressId) throws Exception {
+	public List<ExpressSheet> getTransHistory(String expressId)  {
 		// TODO Auto-generated method stub
-		return null;
+		List<String> list = new ArrayList<>();
+				
+		list =	transPackageContentDao.getPackageID(expressId);
+		System.out.println("llllllllllllist"+list);
+		
+		List<ExpressSheet> list2 = new ArrayList<ExpressSheet>();
+		for(int i=0;i<list.size();i++)
+		{	
+			ExpressSheet e = new ExpressSheet();
+			e.setID(list.get(i));
+			list2.add(e);
+		}
+		return list2;
+		//return null;
 	}
 
 	@Override

@@ -122,12 +122,12 @@ public interface IDomainService {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @Path("/getTransHistory/{expressId}")
-    List<TransHistory> getTransHistory(@PathParam("expressId") String expressId) throws Exception;
+	public List<ExpressSheet> getTransHistory(@PathParam("expressId") String expressId) ;
 	
 	@GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/pack/{uid}/{eid}/{pid}") 
 	public Response pack(@PathParam("uid")int uid, @PathParam("eid")String eid,@PathParam("pid")String pid);
     
-
+	
 }

@@ -28,7 +28,7 @@ public class TransPackageContent  implements Serializable  {
 	@JoinColumns({ @JoinColumn(name="ExpressID", referencedColumnName="ID", nullable=false) })	
 	private ExpressSheet express;
 	
-	@ManyToOne(targetEntity=TransPackage.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=TransPackage.class, fetch=FetchType.LAZY )	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="PackageID", referencedColumnName="ID", nullable=false) })	
 	private TransPackage pkg;
