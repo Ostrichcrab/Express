@@ -129,5 +129,16 @@ public interface IDomainService {
     @Path("/pack/{uid}/{eid}/{pid}") 
 	public Response pack(@PathParam("uid")int uid, @PathParam("eid")String eid,@PathParam("pid")String pid);
     
+	@GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/pack2/{eid}/{pid}") 
+	public Response pack2(@PathParam("eid")String eid,@PathParam("pid")String pid);
+    
+	
+	@GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/unpack/{eid}/{pid}") 
+	public Response unpack(@PathParam("eid")String eid,@PathParam("pid")String pid);
+    
 	
 }

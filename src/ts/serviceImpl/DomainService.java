@@ -418,5 +418,35 @@ public class DomainService implements IDomainService {
 		
 
 	}
+
+	@Override
+	public Response pack2(String eid, String pid) {
+		// TODO Auto-generated method stub
+		TransPackageContent tpc = transPackageContentDao.get(eid,pid);
+		try {
+			//更改状态
+			tpc.setStatus(TransPackageContent.STATUS.STATUS_OUTOF_PACKAGE);
+			transPackageContentDao.save(tpc);
+			return Response.ok().header("EntityClass", "TransPackageContent").build();
+		}catch(Exception e)
+		{
+			return Response.serverError().entity(e.getMessage()).build(); 
+		}
+	}
+
+	@Override
+	public Response unpack(String eid, String pid) {
+		// TODO Auto-generated method stub
+		TransPackageContent tpc = transPackageContentDao.get(eid,pid);
+		try {
+			//更改状态
+			tpc.setStatus(TransPackageContent.STATUS.STATUS_ACTIVE);
+			transPackageContentDao.save(tpc);
+			return Response.ok().header("EntityClass", "TransPackageContent").build();
+		}catch(Exception e)
+		{
+			return Response.serverError().entity(e.getMessage()).build(); 
+		}
+	}
 	
 }
