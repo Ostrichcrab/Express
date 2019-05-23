@@ -357,7 +357,7 @@ public class DomainService implements IDomainService {
 	}
 
 	@Override
-	public List<ExpressSheet> getTransHistory(String expressId)  {
+	public List<TransPackage> getTransHistory(String expressId)  {
 		// TODO Auto-generated method stub
 		List<String> list = new ArrayList<>();
 				
@@ -365,13 +365,18 @@ public class DomainService implements IDomainService {
 		System.out.println("llllllllllllist"+list);
 		
 		List<ExpressSheet> list2 = new ArrayList<ExpressSheet>();
+		List<TransPackage> list3 = new ArrayList<TransPackage>();
 		for(int i=0;i<list.size();i++)
 		{	
+			TransPackage t= transPackageDao.get(list.get(i));
+			list3.add(t);
+			
 			ExpressSheet e = new ExpressSheet();
 			e.setID(list.get(i));
 			list2.add(e);
 		}
-		return list2;
+		System.out.println("ttttttttttttttttt"+list3.toString());
+		return list3;
 		//return null;
 	}
 

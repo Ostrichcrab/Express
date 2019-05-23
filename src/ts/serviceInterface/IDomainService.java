@@ -122,7 +122,7 @@ public interface IDomainService {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @Path("/getTransHistory/{expressId}")
-	public List<ExpressSheet> getTransHistory(@PathParam("expressId") String expressId) ;
+	public List<TransPackage> getTransHistory(@PathParam("expressId") String expressId) ;
 	
 	@GET
     @Consumes(MediaType.APPLICATION_JSON)

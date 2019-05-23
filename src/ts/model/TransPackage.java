@@ -63,7 +63,7 @@ public class TransPackage implements Serializable {
 	@Column(name="Status", nullable=true, length=4)	
 	private Integer status;
 	
-	@XmlTransient
+	
 	@OneToMany(mappedBy="pkg", targetEntity=PackageRoute.class)	
 	@JsonIgnoreProperties(value= {"route"})
 	@Fetch(FetchMode.SELECT)
@@ -75,7 +75,7 @@ public class TransPackage implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	private UsersPackage user;
 	
-	@XmlTransient
+	
 	@OneToMany(mappedBy="pkg", targetEntity=TransPackageContent.class)	
 	@JsonIgnoreProperties(value= {"content"})
 	@Fetch(FetchMode.SELECT)
@@ -83,7 +83,7 @@ public class TransPackage implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set<TransPackageContent> content = new java.util.HashSet<TransPackageContent>();
 	
-	@XmlTransient
+	
 	@OneToMany(mappedBy="pkg", targetEntity=TransHistory.class)	
 	@Fetch(FetchMode.SELECT)
 	@JsonIgnoreProperties(value= {"history"})
@@ -139,7 +139,7 @@ public class TransPackage implements Serializable {
 	public void setRoute(java.util.Set<PackageRoute> value) {
 		this.route = value;
 	}
-	
+	@XmlTransient
 	public java.util.Set<PackageRoute> getRoute() {
 		return route;
 	}
@@ -149,6 +149,7 @@ public class TransPackage implements Serializable {
 		this.user = value;
 	}
 	
+	@XmlTransient
 	public UsersPackage getUser() {
 		return user;
 	}
@@ -156,7 +157,7 @@ public class TransPackage implements Serializable {
 	public void setContent(java.util.Set<TransPackageContent> value) {
 		this.content = value;
 	}
-	
+	@XmlTransient
 	public java.util.Set<TransPackageContent> getContent() {
 		return content;
 	}
@@ -165,7 +166,7 @@ public class TransPackage implements Serializable {
 	public void setHistory(java.util.Set<TransHistory> value) {
 		this.history = value;
 	}
-	
+	@XmlTransient
 	public java.util.Set<TransHistory> getHistory() {
 		return history;
 	}
