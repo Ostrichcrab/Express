@@ -134,6 +134,11 @@ public interface IDomainService {
     @Path("/pack2/{eid}/{pid}") 
 	public Response pack2(@PathParam("eid")String eid,@PathParam("pid")String pid);
     
+	@GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/pack3/{eid}/{pid}/{snode}/{tnode}") 
+	public Response pack3(@PathParam("eid")String eid,@PathParam("pid")String pid,@PathParam("snode")String snode,@PathParam("tnode")String tnode);
+    
 	
 	@GET
     @Consumes(MediaType.APPLICATION_JSON)

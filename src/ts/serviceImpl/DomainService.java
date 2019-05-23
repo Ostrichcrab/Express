@@ -453,5 +453,47 @@ public class DomainService implements IDomainService {
 			return Response.serverError().entity(e.getMessage()).build(); 
 		}
 	}
+
+	@Override
+	public Response pack3(String eid, String pid, String snode, String tnode) {
+		// TODO Auto-generated method stub
+		
+		TransPackage t= transPackageDao.get(pid);
+		ExpressSheet e = expressSheetDao.get(eid);
+		
+		/*
+		 * if( t!=null)System.out.println("isexist"+t.toString()); else
+		 * System.out.println("nullllllllllllllllllllllllll");
+		 */
+		//System.out.println(new Date());
+		SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+		System.out.println(ft.format(new Date()));
+		String time = ft.format(new Date());
+	
+		//≈–∂œtraspackage «∑Ò¥Ê‘⁄
+		if(t==null)
+		{
+			TransPackage tp = new TransPackage();
+			tp.setCreateTime(getCurrentDate());
+		    tp.setID(pid);
+			tp.setSourceNode(snode); tp.setTargetNode(tnode);
+			tp.setStatus(TransPackage.STATUS.STATUS_PACK);
+			System.out.println("tpppppppppp"+tp.toString());
+			transPackageDao.save(tp);
+			
+			TransPackageContent tpc = new TransPackageContent();
+			tpc.setPkg(tp);
+			tpc.setExpress(e);
+			tpc.setStatus(TransPackageContent.STATUS.STATUS_PACK);
+			transPackageContentDao.save(tpc);
+		}else {
+			TransPackageContent tpc = new TransPackageContent();
+			tpc.setPkg(t);
+			tpc.setExpress(e);
+			tpc.setStatus(TransPackageContent.STATUS.STATUS_PACK);
+			transPackageContentDao.save(tpc);
+		}
+		return null;
+	}
 	
 }
