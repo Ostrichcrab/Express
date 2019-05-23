@@ -266,8 +266,12 @@ public class ExpressSheet implements Serializable {
 	}
 	
 	public static final class STATUS{
-		public static final int STATUS_CREATED = 0; //创建
-		public static final int STATUS_TRANSPORT = 1; //转运
-		public static final int STATUS_DELIVERIED = 2;//签收
+		public static final int STATUS_CREATE = 0; // 新建的
+        public static final int STATUS_RECEIVED = 1; // 揽收的
+        public static final int STATUS_TRANSPORT = 2;//转运
+        public static final int STATUS_PACK = 2; // 打包
+        public static final int STAUS_UNPACK = 3;//拆包
+        public static final int STATUS_DELIVERIED = 4; // 派送的
+        public static final int STATUS_FINISH = 5; // 已完成的
 	}
 }

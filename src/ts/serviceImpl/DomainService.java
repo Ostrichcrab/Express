@@ -167,7 +167,7 @@ public class DomainService implements IDomainService {
 			nes.setType(0);
 			nes.setAccepter(String.valueOf(uid));
 			nes.setAccepteTime(getCurrentDate());
-			nes.setStatus(ExpressSheet.STATUS.STATUS_CREATED);
+			nes.setStatus(ExpressSheet.STATUS.STATUS_CREATE);
 //			TransPackageContent pkg_add = new TransPackageContent();
 //			pkg_add.setPkg(transPackageDao.get(pkgId));
 //			pkg_add.setExpress(nes);
@@ -187,7 +187,7 @@ public class DomainService implements IDomainService {
 	public Response saveExpressSheet(ExpressSheet obj) {
 		try{
 			//ExpressSheet nes = expressSheetDao.get(obj.getID());
-			if(obj.getStatus() != ExpressSheet.STATUS.STATUS_CREATED){
+			if(obj.getStatus() != ExpressSheet.STATUS.STATUS_CREATE){
 				return Response.ok("快件运单已付运!无法保存更改!").header("EntityClass", "E_ExpressSheet").build(); 
 			}
 			expressSheetDao.save(obj);			
@@ -203,7 +203,7 @@ public class DomainService implements IDomainService {
 	public Response ReceiveExpressSheetId(String id, int uid) {
 		try{
 			ExpressSheet nes = expressSheetDao.get(id);
-			if(nes.getStatus() != ExpressSheet.STATUS.STATUS_CREATED){
+			if(nes.getStatus() != ExpressSheet.STATUS.STATUS_CREATE){
 				return Response.ok("快件运单状态错误!无法收件!").header("EntityClass", "E_ExpressSheet").build(); 
 			}
 			nes.setAccepter(String.valueOf(uid));
@@ -235,7 +235,7 @@ public class DomainService implements IDomainService {
 		TransPackageContent pkg_add = new TransPackageContent();
 		pkg_add.setPkg(targetPkg);
 		pkg_add.setExpress(expressSheetDao.get(id));
-		pkg_add.setStatus(TransPackageContent.STATUS.STATUS_ACTIVE);
+		pkg_add.setStatus(TransPackageContent.STATUS.STAUS_UNPACK);
 		transPackageContentDao.save(pkg_add); 
 		return true;
 	}
@@ -247,7 +247,7 @@ public class DomainService implements IDomainService {
 		}
 
 		TransPackageContent pkg_add = transPackageContentDao.get(id, sourcePkgId);
-		pkg_add.setStatus(TransPackageContent.STATUS.STATUS_OUTOF_PACKAGE);
+		pkg_add.setStatus(TransPackageContent.STATUS.STATUS_PACK);
 		transPackageContentDao.save(pkg_add); 
 		return true;
 	}
@@ -413,7 +413,7 @@ public class DomainService implements IDomainService {
 		TransPackageContent tpc = transPackageContentDao.get(eid,pid);
 		try {
 			//更改状态
-			tpc.setStatus(TransPackageContent.STATUS.STATUS_OUTOF_PACKAGE);
+			tpc.setStatus(TransPackageContent.STATUS.STATUS_PACK);
 			transPackageContentDao.save(tpc);
 			return Response.ok().header("EntityClass", "TransPackageContent").build();
 		}catch(Exception e)
@@ -430,7 +430,7 @@ public class DomainService implements IDomainService {
 		TransPackageContent tpc = transPackageContentDao.get(eid,pid);
 		try {
 			//更改状态
-			tpc.setStatus(TransPackageContent.STATUS.STATUS_OUTOF_PACKAGE);
+			tpc.setStatus(TransPackageContent.STATUS.STATUS_PACK);
 			transPackageContentDao.save(tpc);
 			return Response.ok().header("EntityClass", "TransPackageContent").build();
 		}catch(Exception e)
@@ -445,7 +445,7 @@ public class DomainService implements IDomainService {
 		TransPackageContent tpc = transPackageContentDao.get(eid,pid);
 		try {
 			//更改状态
-			tpc.setStatus(TransPackageContent.STATUS.STATUS_ACTIVE);
+			tpc.setStatus(TransPackageContent.STATUS.STAUS_UNPACK);
 			transPackageContentDao.save(tpc);
 			return Response.ok().header("EntityClass", "TransPackageContent").build();
 		}catch(Exception e)
