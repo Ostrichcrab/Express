@@ -1,10 +1,12 @@
 package ts.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
 
 import ts.daoBase.BaseDao;
+import ts.model.TransPackage;
 import ts.model.UserInfo;
 
 
@@ -20,6 +22,15 @@ public class UserInfoDao extends BaseDao<UserInfo, Integer> {
 				if (userInfo.getUID() == id) return userInfo;
 			}
 			return null;
+		}
+		//根据id查询用户
+		public UserInfo get( String Id){
+			List<UserInfo> list  = new ArrayList<UserInfo>();
+			list = super.findBy("ID", true, 
+					Restrictions.sqlRestriction("ID = '"+ Id  +"'"));
+			if(list.size() == 0)
+				return null;
+			return list.get(0);
 		}
 		
 //		public boolean login(int id, String passwd) {

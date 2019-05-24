@@ -145,5 +145,10 @@ public interface IDomainService {
     @Path("/unpack/{eid}/{pid}") 
 	public Response unpack(@PathParam("eid")String eid,@PathParam("pid")String pid);
     
+	@GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/transport/{uid}/{pid}") 
+	public Response transport(@PathParam("uid")int uid,@PathParam("pid")String pid);
+    
 	
 }

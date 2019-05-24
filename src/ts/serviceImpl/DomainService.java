@@ -495,5 +495,15 @@ public class DomainService implements IDomainService {
 		}
 		return null;
 	}
+
+	@Override
+	public Response transport(int uid, String pid) {
+		// TODO Auto-generated method stub
+		UserInfo u = userInfoDao.get(uid);
+		//System.out.println("userInfo:"+u.toString());
+		u.setTransPackageID(pid);
+		userInfoDao.save(u);
+		return null;
+	}
 	
 }
