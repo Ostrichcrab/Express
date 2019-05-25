@@ -150,5 +150,15 @@ public interface IDomainService {
     @Path("/transport/{uid}/{pid}") 
 	public Response transport(@PathParam("uid")int uid,@PathParam("pid")String pid);
     
+	@GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/deliver/{eid}/{did}") 
+	public Response deliver(@PathParam("eid")String eid,@PathParam("did")String did);
+    
+	@GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/finish/{eid}/{did}") 
+	public Response finish(@PathParam("eid")String eid,@PathParam("did")String did);
+    
 	
 }

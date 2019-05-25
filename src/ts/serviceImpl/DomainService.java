@@ -505,5 +505,25 @@ public class DomainService implements IDomainService {
 		userInfoDao.save(u);
 		return null;
 	}
+
+	@Override
+	public Response deliver(String eid, String did) {
+		// TODO Auto-generated method stub
+		TransPackageContent tpc = new TransPackageContent();
+		TransPackage t= transPackageDao.get(did);
+		ExpressSheet e = expressSheetDao.get(eid);
+		tpc.setStatus(TransPackageContent.STATUS.STATUS_DELIVERIED);
+		return null;
+	}
+
+	@Override
+	public Response finish(String eid, String did) {
+		// TODO Auto-generated method stub
+		TransPackageContent tpc = new TransPackageContent();
+		TransPackage t= transPackageDao.get(did);
+		ExpressSheet e = expressSheetDao.get(eid);
+		tpc.setStatus(TransPackageContent.STATUS.STATUS_FINISH);
+		return null;
+	}
 	
 }
