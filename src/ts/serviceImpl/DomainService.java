@@ -512,7 +512,11 @@ public class DomainService implements IDomainService {
 		TransPackageContent tpc = new TransPackageContent();
 		TransPackage t= transPackageDao.get(did);
 		ExpressSheet e = expressSheetDao.get(eid);
+		tpc.setPkg(t);
+		tpc.setExpress(e);
 		tpc.setStatus(TransPackageContent.STATUS.STATUS_DELIVERIED);
+		System.out.println("deliver::: "+tpc.toString());
+		transPackageContentDao.save(tpc);
 		return null;
 	}
 
@@ -522,7 +526,10 @@ public class DomainService implements IDomainService {
 		TransPackageContent tpc = new TransPackageContent();
 		TransPackage t= transPackageDao.get(did);
 		ExpressSheet e = expressSheetDao.get(eid);
+		tpc.setPkg(t);
+		tpc.setExpress(e);
 		tpc.setStatus(TransPackageContent.STATUS.STATUS_FINISH);
+		transPackageContentDao.save(tpc);
 		return null;
 	}
 	
