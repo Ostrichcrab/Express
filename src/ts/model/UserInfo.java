@@ -68,6 +68,17 @@ public class UserInfo implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set<UsersPackage> usersPackage = new java.util.HashSet<UsersPackage>();
 	
+	@Transient
+	private String userToken;
+	
+	public String getUserToken() {
+		return userToken;
+	}
+
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
+	}
+
 	public void setUID(int value) {
 		this.UID = value;
 	}

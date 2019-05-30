@@ -493,7 +493,8 @@ public class DomainService implements IDomainService {
 			tpc.setStatus(TransPackageContent.STATUS.STATUS_PACK);
 			transPackageContentDao.save(tpc);
 		}
-		return null;
+		//return null;
+		return Response.ok().header("EntityClass", "TransPackageContent").build();
 	}
 
 	@Override
@@ -503,7 +504,8 @@ public class DomainService implements IDomainService {
 		//System.out.println("userInfo:"+u.toString());
 		u.setTransPackageID(pid);
 		userInfoDao.save(u);
-		return null;
+		//return null;
+		return Response.ok().header("EntityClass", "UserInfo").build();
 	}
 
 	@Override

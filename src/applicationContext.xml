@@ -78,7 +78,7 @@
 		class="ts.daoImpl.PosionDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+   <bean class="ts.interceptor.Authorization" id="authorization"/>
 	<!-- REST服务的注解例子 -->
 	<jaxrs:server id="Service" address="/REST">
 		<jaxrs:serviceBeans>
@@ -111,6 +111,12 @@
 		<jaxrs:languageMappings>
 			<entry key="en" value="en-gb" />
 		</jaxrs:languageMappings>
+		
+		
+<!-- 		<jaxrs:inInterceptors>  -->
+<!--             <ref bean="authorization"/> -->
+<!--         </jaxrs:inInterceptors> -->
+
 	</jaxrs:server>
 
 	<!-- JsonProvider的属性说明: 1. dropRootElement 默认为false，则Json格式会将类名作为第一个节点，如{Customer:{"id":123,"name":"John"}}，如果配置为true，则Json格式为{"id":123,"name":"John"}，而Gson等Json包会解析格式为后者。 

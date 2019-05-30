@@ -12,11 +12,13 @@ import ts.daoImpl.RegionDao;
 import ts.daoImpl.TransNodeDao;
 import ts.model.CodeNamePair;
 import ts.model.CustomerInfo;
+//import ts.model.ErrorMessage;
 import ts.model.ExpressSheet;
 import ts.model.Region;
 import ts.model.TransNode;
 import ts.model.UserInfo;
 import ts.serviceInterface.IMiscService;
+import ts.util.JwtToken;
 import ts.daoImpl.UserInfoDao;
 
 public class MiscService implements IMiscService{
@@ -181,14 +183,28 @@ public class MiscService implements IMiscService{
 	@Override
 	public Response doLogin(int uid, String pwd) {
 		// TODO Auto-generated method stub
+		
+//		UserInfo userInfo = userInfoDao.login(uid, pwd);
+//		if (userInfo != null) {
+//			return Response.ok(userInfo).header("EntityClass", "UserInfo").build(); 
+//		}
+//		else
+//		{
+//			return Response.ok("用户名或密码错误").header("EntityClass", "UserInf").build(); 
+//		}
+//		
 		UserInfo userInfo = userInfoDao.login(uid, pwd);
 		if (userInfo != null) {
-			return Response.ok(userInfo).header("EntityClass", "UserInfo").build(); 
+			System.out.println("logging in……");
+			userInfo.setUserToken(
+					JwtToken.createJWT(userInfo.getName(), userInfo.getUID() + "", userInfo.getURull() + ""));
+			System.out.println("to returning……");
+			return Response.ok(userInfo).header("EntityClass", "UserInfo").build();
 		}
-		else
-		{
-			return Response.ok("用户名或密码错误").header("EntityClass", "UserInf").build(); 
-		}
+		//return Response.ok(new ErrorMessage(ErrorMessage.CODE.LOGIN_FAILED)).header("EntityClass", "ErrorMessage").build();
+		return Response.ok("{\"retCode\":\"4011\",\"retMessage\":\"非准入IP地址!\"}\r\n" + 
+				"\r\n" + 
+				"").header("EntityClass", "UserInfo").build();
 	}
 
 	@Override
