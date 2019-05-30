@@ -102,6 +102,11 @@ public interface IMiscService {
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @Path("/doLogOut/{uid}") 
 	public void doLogOut(@PathParam("uid") int uid);
+    
+    @GET
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/getTransNode/{id}") 
+	public List<TransNode> getTransNode(@PathParam("id") String id);
 
 	public void RefreshSessionList();
 }

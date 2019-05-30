@@ -209,4 +209,12 @@ public class MiscService implements IMiscService{
 		List <CustomerInfo> list = customerInfoDao.findBy();
 		return list; 
 	}
+
+	@Override
+	public List<TransNode> getTransNode(String id) {
+		// TODO Auto-generated method stub
+		List<TransNode> list = transNodeDao.findByRegionCode(id);
+		return list;
+		
+	}
 }

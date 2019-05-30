@@ -516,8 +516,18 @@ public class DomainService implements IDomainService {
 		tpc.setExpress(e);
 		tpc.setStatus(TransPackageContent.STATUS.STATUS_DELIVERIED);
 		System.out.println("deliver::: "+tpc.toString());
-		transPackageContentDao.save(tpc);
-		return null;
+		
+		TransPackageContent ttpc = transPackageContentDao.get(eid,did);
+		if(ttpc==null) {
+			System.out.println("saving¡­¡­");
+			transPackageContentDao.save(tpc);
+		}
+		else {
+			System.out.println("updating¡­¡­");
+			ttpc.setStatus(TransPackageContent.STATUS.STATUS_DELIVERIED);
+			transPackageContentDao.update(ttpc);
+		}
+		return Response.ok().header("EntityClass", "TransPackageContent").build();
 	}
 
 	@Override
@@ -529,8 +539,18 @@ public class DomainService implements IDomainService {
 		tpc.setPkg(t);
 		tpc.setExpress(e);
 		tpc.setStatus(TransPackageContent.STATUS.STATUS_FINISH);
-		transPackageContentDao.save(tpc);
-		return null;
+		
+		TransPackageContent ttpc = transPackageContentDao.get(eid,did);
+		if(ttpc==null) {
+			System.out.println("saving¡­¡­");
+			transPackageContentDao.save(tpc);
+		}
+		else {
+			System.out.println("updating¡­¡­");
+			ttpc.setStatus(TransPackageContent.STATUS.STATUS_FINISH);
+			transPackageContentDao.update(ttpc);
+		}
+		return Response.ok().header("EntityClass", "TransPackageContent").build();
 	}
 	
 }
