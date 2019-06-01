@@ -27,8 +27,8 @@ public interface IDomainService {
 
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    @Path("/getExpressListInPackage/PackageId/{PackageId}") 
-	public List<ExpressSheet> getExpressListInPackage(@PathParam("PackageId")String packageId);
+    @Path("/getExpressListInPackage/PackageId/{PackageId}/{State}") 
+	public List<ExpressSheet> getExpressListInPackage(@PathParam("PackageId")String packageId,@PathParam("State")String state);
 
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
