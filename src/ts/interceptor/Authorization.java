@@ -7,8 +7,7 @@ import org.apache.cxf.message.XMLMessage;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.apache.cxf.phase.Phase;
 
-import ts.model.ErrorMessage;
-//import ts.model.ErrorMessage;
+
 import ts.util.JwtToken;
 
 import javax.servlet.http.HttpServletRequest;
