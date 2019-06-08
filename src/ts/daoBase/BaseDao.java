@@ -111,8 +111,15 @@ public class BaseDao<T,PK extends Serializable> extends HibernateDaoSupport impl
 	
 	@Override
 	public void save(T entity) {
+		System.out.println(entity);
 		getHibernateTemplate().save(entity);
 	}
+	
+	
+	public void save1(T entity) {
+		getHibernateTemplate().saveOrUpdate(entity);
+	}
+	
 	
 	@Override
 	public void update(T entity) {

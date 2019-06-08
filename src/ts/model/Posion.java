@@ -32,10 +32,10 @@ public class Posion implements Serializable {
 	private int posCode;
 	
 	@Column(name="X", nullable=false, length=10)	
-	private double x;
+	private double X;
 	
 	@Column(name="Y", nullable=false, length=10)	
-	private double y;
+	private double Y;
 	
 	@Column(name="packageId", nullable=true, length=60)	
 	private String packageId;
@@ -61,19 +61,19 @@ public class Posion implements Serializable {
 	}
 	
 	public void setX(double value) {
-		this.x = value;
+		this.X = value;
 	}
 	
 	public double getX() {
-		return x;
+		return X;
 	}
 	
 	public void setY(double value) {
-		this.y = value;
+		this.Y = value;
 	}
 	
 	public double getY() {
-		return y;
+		return Y;
 	}
 	
 	public String toString() {

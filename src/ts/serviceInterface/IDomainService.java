@@ -109,10 +109,10 @@ public interface IDomainService {
     @Path("/saveTransPackage") 
 	public Response saveTransPackage(TransPackage obj);
     
-    @POST
+    @GET
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/savePosion") 
-	public Response savePosion(Posion obj);
+    @Path("/savePosion/{X}/{Y}/{pid}") 
+	public Response savePosion(@PathParam("X") double X,@PathParam("Y") double Y,@PathParam("pid") String pid);
     
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })

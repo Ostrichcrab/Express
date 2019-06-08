@@ -151,7 +151,8 @@ public class DomainService implements IDomainService {
 	public Response newExpressSheet(String id, int uid) {
 		ExpressSheet es = null;
 		try{
-			es = expressSheetDao.get(id);
+			System.out.println("newExpressSheet : is going to get ……");
+			//es = expressSheetDao.get(id);
 		} catch (Exception e1) {}
 
 		if(es != null){
@@ -172,6 +173,7 @@ public class DomainService implements IDomainService {
 //			pkg_add.setPkg(transPackageDao.get(pkgId));
 //			pkg_add.setExpress(nes);
 //			nes.getTransPackageContent().add(pkg_add);
+			System.out.println("newExpressSheet:is going to save");
 			expressSheetDao.save(nes);
 			//放到收件包裹中
 			MoveExpressIntoPackage(nes.getID(),pkgId);
@@ -187,10 +189,11 @@ public class DomainService implements IDomainService {
 	public Response saveExpressSheet(ExpressSheet obj) {
 		try{
 			//ExpressSheet nes = expressSheetDao.get(obj.getID());
-			if(obj.getStatus() != ExpressSheet.STATUS.STATUS_CREATE){
-				return Response.ok("快件运单已付运!无法保存更改!").header("EntityClass", "E_ExpressSheet").build(); 
-			}
-			expressSheetDao.save(obj);			
+//			if(obj.getStatus() != ExpressSheet.STATUS.STATUS_CREATE){
+//				return Response.ok("快件运单已付运!无法保存更改!").header("EntityClass", "E_ExpressSheet").build(); 
+//			}
+			System.out.println("saveExpressSheet : is going to save");
+			expressSheetDao.save1(obj);			
 			return Response.ok(obj).header("EntityClass", "R_ExpressSheet").build(); 
 		}
 		catch(Exception e)
@@ -339,10 +342,15 @@ public class DomainService implements IDomainService {
 	}
 
 	@Override
-	public Response savePosion(Posion obj) {
+	public Response savePosion(double X, double Y, String pid ) {
 		try {
-			posionDao.save(obj);
-			return Response.ok(obj).header("EntityClass", "Posion").build();
+			System.out.println("ppppppppp : "+X+" "+Y);
+			Posion p = new Posion();
+			p.setX(X);
+			p.setY(Y);
+			p.setPackageId(pid);
+			posionDao.save(p);
+			return Response.ok(p).header("EntityClass", "Posion").build();
 		}catch(Exception e)
 		{
 			return Response.serverError().entity(e.getMessage()).build(); 
