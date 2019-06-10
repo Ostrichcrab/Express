@@ -113,9 +113,9 @@
 		</jaxrs:languageMappings>
 		
 		
-		<jaxrs:inInterceptors> 
-            <ref bean="authorization"/>
-        </jaxrs:inInterceptors>
+<!-- 		<jaxrs:inInterceptors>  -->
+<!--             <ref bean="authorization"/> -->
+<!--         </jaxrs:inInterceptors> -->
 
 	</jaxrs:server>
 

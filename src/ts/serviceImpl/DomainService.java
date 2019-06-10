@@ -14,6 +14,7 @@ import ts.daoImpl.TransHistoryDao;
 import ts.daoImpl.TransPackageContentDao;
 import ts.daoImpl.TransPackageDao;
 import ts.daoImpl.UserInfoDao;
+import ts.model.Count;
 import ts.model.ExpressSheet;
 import ts.model.Posion;
 import ts.model.TransHistory;
@@ -561,6 +562,42 @@ public class DomainService implements IDomainService {
 			transPackageContentDao.update(ttpc);
 		}
 		return Response.ok().header("EntityClass", "TransPackageContent").build();
+	}
+
+	@Override
+	public List<ExpressSheet> countByUid(String uid) {
+		// TODO Auto-generated method stub
+		List<ExpressSheet> ans = new ArrayList<>();
+		List <ExpressSheet> list = expressSheetDao.findBy();
+		for(ExpressSheet item : list) {
+			if(item.getAccepter().equals(uid)) {
+				ans.add(item);
+			}
+		}
+		System.out.println("countByUid:---"+ans);
+		return ans;
+	}
+
+	@Override
+	public List<Count> countAll() {
+		// TODO Auto-generated method stub
+		List <UserInfo> u = userInfoDao.findBy();
+		List <ExpressSheet> e = expressSheetDao.findBy();
+		List<Count> ans = new ArrayList<Count>();
+		for(UserInfo item : u) {
+			Count c = new Count();
+			c.setUid(item.getUID());
+			int s = 0;
+			for(ExpressSheet it : e) {
+				if(it.getAccepter().equals(String.valueOf(item.getUID()))) {
+					s++;
+				}
+			}
+			c.setCnt(s);
+			ans.add(c);
+		}
+		System.out.println("CountAll:---------"+ans);
+		return ans;
 	}
 	
 }

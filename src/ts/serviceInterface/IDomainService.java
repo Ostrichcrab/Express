@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import ts.model.Count;
 import ts.model.ExpressSheet;
 import ts.model.Posion;
 import ts.model.TransHistory;
@@ -159,6 +160,18 @@ public interface IDomainService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/finish/{eid}/{did}") 
 	public Response finish(@PathParam("eid")String eid,@PathParam("did")String did);
+    
+	
+	@GET
+    @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/countByUid/{uid}") 
+	public List<ExpressSheet> countByUid(@PathParam("uid")String uid);
+	
+	@GET
+    @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/countAll") 
+	public List<Count> countAll();
     
 	
 }
