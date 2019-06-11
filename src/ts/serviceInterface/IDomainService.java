@@ -1,6 +1,8 @@
 package ts.serviceInterface;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -13,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import ts.model.Count;
 import ts.model.ExpressSheet;
+import ts.model.Node;
 import ts.model.Posion;
 import ts.model.TransHistory;
 import ts.model.TransPackage;
@@ -172,6 +175,12 @@ public interface IDomainService {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @Path("/countAll") 
 	public List<Count> countAll();
+	
+	@GET
+    @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/countByNode") 
+	public List<Node> countByNode();
+	
     
 	
 }

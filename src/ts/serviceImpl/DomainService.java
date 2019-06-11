@@ -4,9 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.core.Response;
+
 
 import ts.daoImpl.ExpressSheetDao;
 import ts.daoImpl.PosionDao;
@@ -16,6 +21,7 @@ import ts.daoImpl.TransPackageDao;
 import ts.daoImpl.UserInfoDao;
 import ts.model.Count;
 import ts.model.ExpressSheet;
+import ts.model.Node;
 import ts.model.Posion;
 import ts.model.TransHistory;
 import ts.model.TransPackage;
@@ -597,6 +603,74 @@ public class DomainService implements IDomainService {
 			ans.add(c);
 		}
 		System.out.println("CountAll:---------"+ans);
+		return ans;
+	}
+
+	@Override
+	public List<Node> countByNode() {
+		// TODO Auto-generated method stub
+		List <TransPackageContent> tpc = transPackageContentDao.findBy();
+		HashSet hs = new HashSet<String>(); //存放packageId
+		for(TransPackageContent it : tpc) {
+			String key = it.getPkg().getID();
+			if(hs.contains(key)) continue;
+			hs.add(key);
+		}
+		System.out.println("hs============"+hs);
+		
+		//根据packageId统计node数据
+		Map<String,Integer> m = new HashMap<String,Integer>();
+		List <TransPackage> tp = transPackageDao.findBy();
+		
+		System.out.println("tp..........."+tp);
+		
+		System.out.println("========================");
+		Iterator it0=hs.iterator();
+		while(it0.hasNext()) System.out.println((String)it0.next());
+		System.out.println("========================");
+		for(TransPackage item0 : tp) System.out.println(item0.getID());
+		System.out.println("========================");
+		
+		
+		for(TransPackage item : tp) {
+			Iterator it=hs.iterator();
+			while(it.hasNext()) {
+				String s = (String)it.next();
+				if(item.getID().equals(s)) {
+					
+//					System.out.println("ojbk,equal...."+item.getID()+"..."+s );
+//					System.out.println("item.getSourceNode()"+item.getSourceNode());
+					if(m.containsKey(item.getSourceNode())) {
+						
+						m.put(item.getSourceNode(),m.get(item.getSourceNode()) + 1);
+						
+					}else {
+						
+						m.put(item.getSourceNode(),1);
+						
+					}
+				}
+			}
+			
+		}
+		System.out.println("m................"+m);
+		
+		List<Node> ans = new ArrayList<Node>();
+		
+//		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+//
+//		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//
+//		}
+		
+		for(Map.Entry<String, Integer> entry : m.entrySet()) {
+			Node n = new Node();
+			n.setId(entry.getKey());
+			n.setCnt(entry.getValue());
+			ans.add(n);
+		}
+		
+		
 		return ans;
 	}
 	
