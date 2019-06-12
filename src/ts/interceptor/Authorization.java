@@ -33,11 +33,11 @@ public class Authorization extends AbstractPhaseInterceptor<Message> {
         String uri = (String) message.get(Message.REQUEST_URI);
         System.out.println(uri);
         String token = request.getHeader("Authorization");
-        if(token.equals("123456789")) {
+        
+        if (!uri.matches("^/TestCxfHibernate/REST/Misc/doLogin/\\S*$") && !uri.matches("^/TestCxfHibernate/REST/Misc/doLogin/\\S*$")) { //不是登录
+            if("123456789".equals(token)) {
         	return ;
         }
-        if (!uri.matches("^/TestCxfHibernate/REST/Misc/doLogin/\\S*$") && !uri.matches("^/TestCxfHibernate/REST/Misc/doLogin/\\S*$")) { //不是登录
-            
             String test = request.getHeader("USER_AGENT");
             System.out.println(uri+" USER_AGENT "+test+" Authorization "+token);
             try {
