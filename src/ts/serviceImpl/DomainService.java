@@ -129,9 +129,9 @@ public class DomainService implements IDomainService {
 //	}
 
 	@Override
-	public List<ExpressSheet> getExpressListInPackage(String packageId,String state){
+	public List<ExpressSheet> getExpressListInPackage(String packageId){
 		List<ExpressSheet> list = new ArrayList<ExpressSheet>();
-		list = expressSheetDao.getListInPackage(packageId,state);
+		list = expressSheetDao.getListInPackage(packageId);
 		return list;		
 	}
 

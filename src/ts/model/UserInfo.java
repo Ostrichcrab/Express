@@ -198,5 +198,12 @@ public class UserInfo implements Serializable {
 			return sb.toString();
 		}
 	}
+	
+	public static final class STATUS{
+		public static final int STATUS_RECEIVER = 0; // 揽收员
+        public static final int STATUS_SORTER = 1; // 分拣员
+        public static final int STATUS_TRANSPORTER = 2;//转运司机
+        public static final int STATUS_MANAGER = 3;//经理&管理员
+	}
 
 }

@@ -35,8 +35,10 @@ public class ExpressSheetDao extends BaseDao<ExpressSheet,String> {
 	}
 
 	//获得指定包裹ID的所有快件列表
-	public List<ExpressSheet> getListInPackage(String pkg_id,String state) {	
-		String sql = "{alias}.ID in (select ExpressID from TransPackageContent where Status = "+state+" and PackageID = '"+pkg_id+"')";
+	public List<ExpressSheet> getListInPackage(String pkg_id) {	
+		//String sql = "{alias}.ID in (select ExpressID from TransPackageContent where Status = "+state+" and PackageID = '"+pkg_id+"')";
+		String sql = "{alias}.ID in (select ExpressID from TransPackageContent where  PackageID = '"+pkg_id+"')";
+
 		List<ExpressSheet> list = new ArrayList<ExpressSheet>();
 		list = findBy("ID", true, Restrictions.sqlRestriction(sql));		
 		return list;
